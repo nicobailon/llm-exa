@@ -151,13 +151,7 @@ pip install -e '.[test]'
 
 After installation, you might see model names displayed as "Exa: Search" rather than with the expected "exa-" prefix in the output of `llm models`. This is because the model ID (which includes the prefix) is used internally, while the display name is shown in the model list.
 
-If you're not seeing the Exa models at all after installation, try reloading the plugins:
-
-```bash
-llm plugins reload
-```
-
-If that doesn't work, you may need to reinstall:
+If you're not seeing the Exa models at all after installation, you may need to reinstall:
 
 ```bash
 llm uninstall llm-exa
@@ -170,7 +164,6 @@ When developing or testing changes to the plugin, you might need to reinstall it
 
 ```bash
 pip install -e . --force-reinstall
-llm plugins reload
 ```
 
 You can check which version is installed with:
