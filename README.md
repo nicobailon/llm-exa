@@ -172,6 +172,29 @@ You can check which version is installed with:
 pip show llm-exa
 ```
 
+### Plugin Not Found in Virtual Environments
+
+**Only relevant if using virtual environments:** If you've installed the plugin but it doesn't appear when running `llm plugins`, you might be using different Python environments for LLM and the plugin.
+
+To check if this is your issue, see which LLM executable you're running:
+
+```bash
+which llm
+```
+
+If you're developing with a virtual environment, you may need to:
+
+1. Use the full path to your virtual environment's LLM:
+   ```bash
+   /path/to/your/venv/bin/llm plugins
+   /path/to/your/venv/bin/llm -m exa-search "Your query"
+   ```
+
+2. Or create a helpful alias in your `.bashrc` or `.zshrc`:
+   ```bash
+   alias venv-llm='/path/to/your/venv/bin/llm'
+   ```
+
 ## License
 
 This project is licensed under the Apache License 2.0.
