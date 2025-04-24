@@ -399,11 +399,4 @@ class Exa(llm.Model):
         return output
 
     def __str__(self):
-        model_name_map = {
-            "exa-search": "Search",
-            "exa-search-contents": "Search & Contents",
-            "exa-find-similar": "Find Similar",
-            "exa-answer": "Answer",
-        }
-        model_name = model_name_map.get(self.model_id, self.model_id)
-        return f"Exa: {model_name}"
+        return f"Exa: {self.model_id}"

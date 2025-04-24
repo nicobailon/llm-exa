@@ -151,13 +151,7 @@ pip install -e '.[test]'
 
 After installation, you might see model names displayed as "Exa: Search" rather than with the expected "exa-" prefix in the output of `llm models`. This is because the model ID (which includes the prefix) is used internally, while the display name is shown in the model list.
 
-If you're not seeing the Exa models at all after installation, try reloading the plugins:
-
-```bash
-llm plugins reload
-```
-
-If that doesn't work, you may need to reinstall:
+If you're not seeing the Exa models at all after installation, you may need to reinstall:
 
 ```bash
 llm uninstall llm-exa
@@ -170,7 +164,6 @@ When developing or testing changes to the plugin, you might need to reinstall it
 
 ```bash
 pip install -e . --force-reinstall
-llm plugins reload
 ```
 
 You can check which version is installed with:
@@ -178,6 +171,29 @@ You can check which version is installed with:
 ```bash
 pip show llm-exa
 ```
+
+### Plugin Not Found in Virtual Environments
+
+**Only relevant if using virtual environments:** If you've installed the plugin but it doesn't appear when running `llm plugins`, you might be using different Python environments for LLM and the plugin.
+
+To check if this is your issue, see which LLM executable you're running:
+
+```bash
+which llm
+```
+
+If you're developing with a virtual environment, you may need to:
+
+1. Use the full path to your virtual environment's LLM:
+   ```bash
+   /path/to/your/venv/bin/llm plugins
+   /path/to/your/venv/bin/llm -m exa-search "Your query"
+   ```
+
+2. Or create a helpful alias in your `.bashrc` or `.zshrc`:
+   ```bash
+   alias venv-llm='/path/to/your/venv/bin/llm'
+   ```
 
 ## License
 
