@@ -1,0 +1,27 @@
+[project]
+name = "llm-exa"
+version = "0.1.0"
+description = "LLM plugin for accessing Exa.ai API"
+readme = "README.md"
+authors = [{name = "Nico Bailon"}]
+license = {text = "Apache-2.0"}
+classifiers = [
+    "License :: OSI Approved :: Apache Software License"
+]
+dependencies = [
+    "llm",
+    "requests",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov"
+]
+
+[project.urls]
+Homepage = "https://github.com/nicobailon/llm-exa"
+Issues = "https://github.com/nicobailon/llm-exa/issues"
+
+[project.entry-points.llm]
+exa = "llm_exa"
