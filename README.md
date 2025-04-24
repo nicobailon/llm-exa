@@ -13,6 +13,12 @@ Install this plugin in the same environment as [LLM](https://llm.datasette.io/).
 llm install llm-exa
 ```
 
+Or install directly from PyPI:
+
+```bash
+pip install llm-exa
+```
+
 ## Configuration
 
 First, set an API key for Exa.ai:
@@ -137,6 +143,40 @@ cd llm-exa
 python -m venv venv
 source venv/bin/activate
 pip install -e '.[test]'
+```
+
+## Troubleshooting
+
+### Model Name Display
+
+After installation, you might see model names displayed as "Exa: Search" rather than with the expected "exa-" prefix in the output of `llm models`. This is because the model ID (which includes the prefix) is used internally, while the display name is shown in the model list.
+
+If you're not seeing the Exa models at all after installation, try reloading the plugins:
+
+```bash
+llm plugins reload
+```
+
+If that doesn't work, you may need to reinstall:
+
+```bash
+llm uninstall llm-exa
+llm install llm-exa
+```
+
+### Plugin Version
+
+When developing or testing changes to the plugin, you might need to reinstall it to see your changes:
+
+```bash
+pip install -e . --force-reinstall
+llm plugins reload
+```
+
+You can check which version is installed with:
+
+```bash
+pip show llm-exa
 ```
 
 ## License
