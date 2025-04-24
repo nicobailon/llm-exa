@@ -11,10 +11,10 @@ from typing import Optional, List, Dict, Any
 @llm.hookimpl
 def register_models(register):
     # Register available Exa models
-    register(Exa("search"))
-    register(Exa("search-contents"))
-    register(Exa("find-similar"))
-    register(Exa("answer"))
+    register(Exa("exa-search"))
+    register(Exa("exa-search-contents"))
+    register(Exa("exa-find-similar"))
+    register(Exa("exa-answer"))
 
 
 class ExaOptions(llm.Options):
@@ -97,26 +97,26 @@ class Exa(llm.Model):
             "Content-Type": "application/json",
         }
         
-        # Process based on model type (search, search-contents, find-similar, answer)
-        if self.model_id == "search":
+        # Process based on model type (exa-search, exa-search-contents, exa-find-similar, exa-answer)
+        if self.model_id == "exa-search":
             result = self.handle_search(prompt, headers)
             response.response_json = remove_dict_none_values(result)
             self.format_search_results(result, response)
             yield self.format_search_output(result)
             
-        elif self.model_id == "search-contents":
+        elif self.model_id == "exa-search-contents":
             result = self.handle_search_contents(prompt, headers)
             response.response_json = remove_dict_none_values(result)
             self.format_search_contents_results(result, response)
             yield self.format_search_contents_output(result)
             
-        elif self.model_id == "find-similar":
+        elif self.model_id == "exa-find-similar":
             result = self.handle_find_similar(prompt, headers)
             response.response_json = remove_dict_none_values(result)
             self.format_find_similar_results(result, response)
             yield self.format_find_similar_output(result)
             
-        elif self.model_id == "answer":
+        elif self.model_id == "exa-answer":
             if stream and prompt.options.stream:
                 yield from self.handle_answer_stream(prompt, headers, response)
             else:
@@ -400,10 +400,10 @@ class Exa(llm.Model):
 
     def __str__(self):
         model_name_map = {
-            "search": "Search",
-            "search-contents": "Search & Contents",
-            "find-similar": "Find Similar",
-            "answer": "Answer",
+            "exa-search": "Search",
+            "exa-search-contents": "Search & Contents",
+            "exa-find-similar": "Find Similar",
+            "exa-answer": "Answer",
         }
         model_name = model_name_map.get(self.model_id, self.model_id)
         return f"Exa: {model_name}"
